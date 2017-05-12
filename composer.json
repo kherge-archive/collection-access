@@ -42,6 +42,7 @@
     "require": {
         "php": ">=7.1",
 
-        "doctrine/inflector": "^1.0"
+        "doctrine/inflector": "^1.0",
+        "psr/cache": "~1.0"
     }
 }
