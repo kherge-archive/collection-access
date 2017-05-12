@@ -1,0 +1,45 @@
+{
+    "type": "library",
+    "name": "kherge/collection-access",
+    "description": "Manages access to collections from different types of sources.",
+    "keywords": ["collection", "collections"],
+    "license": [
+        "MIT",
+        "Apache-2.0"
+    ],
+    "support": {
+        "issues": "https://github.com/kherge-php/collection-access/issues",
+        "source": "https://github.com/kherge-php/collection-access"
+    },
+
+    "authors": [
+        {
+            "name": "Kevin Herrera",
+            "email": "kevin@herrera.io",
+            "homepage": "http://kevin.herrera.io/",
+            "role": "Developer"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "KHerGe\\CollectionAccess\\": "src/KHerGe/CollectionAccess"
+        }
+    },
+
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\KHerGe\\CollectionAccss\\": "tests/KHerGe/CollectionAccess"
+        }
+    },
+
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    },
+
+    "require": {
+        "php": ">=7.1"
+    }
+}
