@@ -97,7 +97,7 @@ interface CollectionAccessorInterface
      * $accessor->add($source, 'examples', $value);
      * ```
      *
-     * @param array|object $source     The source that has the collection.
+     * @param array|object &$source    The source that has the collection.
      * @param string       $collection The name of the collection.
      * @param mixed        $value      The value to add.
      *
@@ -105,7 +105,7 @@ interface CollectionAccessorInterface
      * @throws InvalidSourceException      If the source is not valid.
      * @throws CollectionNotExistException If the collection does not exist.
      */
-    public function add($source, string $collection, $value) : void;
+    public function add(&$source, string $collection, $value) : void;
 
     /**
      * Checks if a collection contains a value.
@@ -135,7 +135,7 @@ interface CollectionAccessorInterface
      * $values = $accessor->get($source, 'examples');
      * ```
      *
-     * @param array|object $source     The source that has the collection.
+     * @param array|object &$source    The source that has the collection.
      * @param string       $collection The name of the collection.
      *
      * @return mixed[] The values in the collection.
@@ -144,7 +144,7 @@ interface CollectionAccessorInterface
      * @throws InvalidSourceException      If the source is not valid.
      * @throws CollectionNotExistException If the collection does not exist.
      */
-    public function get($source, string $collection) : array;
+    public function get(&$source, string $collection) : array;
 
     /**
      * Removes a value from the collection.
@@ -153,7 +153,7 @@ interface CollectionAccessorInterface
      * $accessor->remove($source, 'examples', $value);
      * ```
      *
-     * @param array|object $source     The source that has the collection.
+     * @param array|object &$source    The source that has the collection.
      * @param string       $collection The name of the collection.
      * @param mixed        $value      The value to remove.
      *
@@ -161,7 +161,7 @@ interface CollectionAccessorInterface
      * @throws InvalidSourceException      If the source is not valid.
      * @throws CollectionNotExistException If the collection does not exist.
      */
-    public function remove($source, string $collection, $value) : void;
+    public function remove(&$source, string $collection, $value) : void;
 
     /**
      * Replaces all of the values in the collection.
@@ -170,7 +170,7 @@ interface CollectionAccessorInterface
      * $accessor->set($source, 'examples', $values);
      * ```
      *
-     * @param array|object $source     The source that has the collection.
+     * @param array|object &$source    The source that has the collection.
      * @param string       $collection The name of the collection.
      * @param mixed[]      $values     The values to replace with.
      *
@@ -178,5 +178,5 @@ interface CollectionAccessorInterface
      * @throws InvalidSourceException      If the source is not valid.
      * @throws CollectionNotExistException If the collection does not exist.
      */
-    public function set($source, string $collection, $values) : void;
+    public function set(&$source, string $collection, $values) : void;
 }
