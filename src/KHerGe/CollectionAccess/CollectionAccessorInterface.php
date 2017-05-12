@@ -108,6 +108,24 @@ interface CollectionAccessorInterface
     public function add(&$source, string $collection, $value) : void;
 
     /**
+     * Returns all of the values in the collection.
+     *
+     * ```php
+     * $values = $accessor->get($source, 'examples');
+     * ```
+     *
+     * @param array|object &$source    The source that has the collection.
+     * @param string       $collection The name of the collection.
+     *
+     * @return mixed[] The values in the collection.
+     *
+     * @throws InvalidCollectionException  If the collection is not valid.
+     * @throws InvalidSourceException      If the source is not valid.
+     * @throws CollectionNotExistException If the collection does not exist.
+     */
+    public function get(&$source, string $collection) : array;
+
+    /**
      * Checks if a collection contains a value.
      *
      * ```php
@@ -127,24 +145,6 @@ interface CollectionAccessorInterface
      * @throws CollectionNotExistException If the collection does not exist.
      */
     public function has($source, string $collection, $value) : bool;
-
-    /**
-     * Returns all of the values in the collection.
-     *
-     * ```php
-     * $values = $accessor->get($source, 'examples');
-     * ```
-     *
-     * @param array|object &$source    The source that has the collection.
-     * @param string       $collection The name of the collection.
-     *
-     * @return mixed[] The values in the collection.
-     *
-     * @throws InvalidCollectionException  If the collection is not valid.
-     * @throws InvalidSourceException      If the source is not valid.
-     * @throws CollectionNotExistException If the collection does not exist.
-     */
-    public function get(&$source, string $collection) : array;
 
     /**
      * Removes a value from the collection.
