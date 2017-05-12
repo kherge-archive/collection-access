@@ -114,7 +114,7 @@ interface CollectionAccessorInterface
      * $values = $accessor->get($source, 'examples');
      * ```
      *
-     * @param array|object &$source    The source that has the collection.
+     * @param array|object $source     The source that has the collection.
      * @param string       $collection The name of the collection.
      *
      * @return mixed[] The values in the collection.
@@ -123,7 +123,7 @@ interface CollectionAccessorInterface
      * @throws InvalidSourceException      If the source is not valid.
      * @throws CollectionNotExistException If the collection does not exist.
      */
-    public function get(&$source, string $collection) : array;
+    public function get($source, string $collection) : array;
 
     /**
      * Checks if a collection contains a value.
