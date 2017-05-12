@@ -1,0 +1,5 @@
+# Exclude Composer managed dependencies.
+/vendor/
+
+# Exclude Composer generated files.
+/composer.lock
