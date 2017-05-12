@@ -156,12 +156,18 @@ interface CollectionAccessorInterface
      * @param array|object &$source    The source that has the collection.
      * @param string       $collection The name of the collection.
      * @param mixed        $value      The value to remove.
+     * @param boolean      $first      Only remove the first occurrence?
      *
      * @throws InvalidCollectionException  If the collection is not valid.
      * @throws InvalidSourceException      If the source is not valid.
      * @throws CollectionNotExistException If the collection does not exist.
      */
-    public function remove(&$source, string $collection, $value) : void;
+    public function remove(
+        &$source,
+        string $collection,
+        $value,
+        bool $first = true
+    ) : void;
 
     /**
      * Replaces all of the values in the collection.
