@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kherge-php/providence.svg?branch=master)](https://travis-ci.org/kherge-php/providence)
+
 Collection Access
 =================
 
