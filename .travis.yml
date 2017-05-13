@@ -1,0 +1,25 @@
+branches:
+    only:
+        - master
+
+install:
+    - composer install
+    - composer require phpunit/phpunit=^5.0
+
+language: php
+
+matrix:
+
+    allow_failures:
+        - php: nightly
+        - php: hhvm
+
+    fast_finish: true
+
+php:
+    - 7.1
+    - nightly
+
+script: vendor/bin/phpunit
+
+sudo: false
