@@ -435,7 +435,53 @@ class CollectionAccessorTest extends TestCase
                         'The values were not returned.'
                     );
                 }
-            ]
+            ],
+
+            // #4
+            [
+                function () {
+                    $pool = $this->createCachePool();
+                    $item = $this->createCacheItem(
+                        $pool,
+                        sprintf('g;%s<values>', Method::class)
+                    );
+
+                    $item
+                        ->expects(self::once())
+                        ->method('isHit')
+                        ->willReturn(false)
+                    ;
+
+                    $item
+                        ->expects(self::once())
+                        ->method('set')
+                        ->with(
+                            [
+                                'method' => 'getValues',
+                                'property' => false
+                            ]
+                        )
+                        ->willReturn($item)
+                    ;
+
+                    return $pool;
+                },
+                new Method(
+                    [
+                        123,
+                        456,
+                        789
+                    ]
+                ),
+                function ($values) {
+                    self::assertEquals(
+                        [456],
+                        $values,
+                        'The values were not returned.'
+                    );
+                },
+                [1, 1]
+            ],
 
         ];
     }
@@ -445,15 +491,20 @@ class CollectionAccessorTest extends TestCase
      *
      * Verify that the values are retrieved from the collection.
      *
-     * @param callable     $pool   The mock cache item pool generator.
-     * @param array|object $source The collection source.
-     * @param callable     $assert The result assertions.
+     * @param callable     $pool      The mock cache item pool generator.
+     * @param array|object $source    The collection source.
+     * @param callable     $assert    The result assertions.
+     * @param mixed[]      $arguments The getter arguments.
      */
-    public function testGetTheValues(callable $pool, $source, callable $assert)
-    {
+    public function testGetTheValues(
+        callable $pool,
+        $source,
+        callable $assert,
+        array $arguments = []
+    ) {
         $accessor = $this->createAccessor($pool());
 
-        $assert($accessor->get($source, 'values'));
+        $assert($accessor->get($source, 'values', ...$arguments));
     }
 
     // has() -------------------------------------------------------------------

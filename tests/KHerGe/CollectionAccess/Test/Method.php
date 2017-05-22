@@ -39,11 +39,14 @@ class Method
     /**
      * Returns the values in the collection.
      *
+     * @param integer $offset The offset.
+     * @param integer $limit  The limit.
+     *
      * @return mixed[] The values.
      */
-    public function getValues() : array
+    public function getValues(int $offset = 0, int $limit = null) : array
     {
-        return $this->values;
+        return array_slice($this->values, $offset, $limit);
     }
 
     /**

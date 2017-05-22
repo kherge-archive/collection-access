@@ -138,14 +138,20 @@ class CollectionAccessor implements CollectionAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function get($source, string $collection) : array
+    public function get($source, string $collection, ...$argument) : array
     {
         if (is_array($source)) {
             $this->checkArray($source, $collection);
 
             return $source[$collection];
         } elseif (is_object($source)) {
-            return $this->withObject($source, $collection, self::GET);
+            return $this->withObject(
+                $source,
+                $collection,
+                self::GET,
+                null,
+                $argument
+            );
         }
 
         throw InvalidSourceException::with($source);
@@ -365,6 +371,7 @@ class CollectionAccessor implements CollectionAccessorInterface
      * @param string             $collection The name of the collection.
      * @param string             $key        The accessor key.
      * @param mixed|mixed[]|void $value      The value(s) to pass.
+     * @param mixed[]            $arguments  The method arguments.
      *
      * @return mixed The result, if any.
      *
@@ -374,13 +381,18 @@ class CollectionAccessor implements CollectionAccessorInterface
         $source,
         string $collection,
         string $key,
-        $value = null
+        $value = null,
+        array $arguments = []
     ) {
         $accessor = $this->findAccessor($source, $collection, $key);
 
         if ($accessor['property']) {
             return $this->withProperty($source, $collection, $key, $value);
         } elseif (null !== $accessor['method']) {
+            if (self::GET === $key) {
+                return $source->{$accessor['method']}(...$arguments);
+            }
+
             return $source->{$accessor['method']}($value);
         }
 
