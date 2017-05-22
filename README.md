@@ -25,8 +25,8 @@ $object = new class() {
         $this->values[] = $value;
     }
     
-    public function getValues() : array {
-        return $this->values;
+    public function getValues(int $offset = 0, int $limit = null) : array {
+        return array_slice($this->values, $offset, $limit);
     }
     
     public function hasValue($value) : bool {
@@ -59,6 +59,10 @@ $accessor->add($object, 'values', $value);
 // Get the values.
 $values = $accessor->get($array, 'values');
 $values = $accessor->get($object, 'values');
+
+// Get the values with arguments for the getter method.
+// (Only works with getter methods.)
+$values = $accessor->get($object, 'values', 1, 1);
 
 // Check for a value.
 if ($accessor->has($array, 'values', $value)) {
