@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kherge-php/providence.svg?branch=master)](https://travis-ci.org/kherge-php/providence)
+[![Build Status](https://travis-ci.org/kherge-php/collection-access.svg?branch=master)](https://travis-ci.org/kherge-php/collection-access)
 
 Collection Access
 =================
